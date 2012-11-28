@@ -3,6 +3,9 @@
 //terminal.php
 
 
+<?php
+// terminal.php
+
 session_start();
 // store session data
 $_SESSION['output'];
@@ -60,23 +63,30 @@ echo <<<_END
                 font-size: 12px;
                 line-height: 14px;
                 } 
+                input{
+				background: transparent;
+				border: 0; 
+				color: #aaa; 
+				width: 80%; 
+				font-size: 1em; 
+				font-family: FreeMono, monospace;
+				outline: none;
+				}
                 </STYLE>        
 		<title>Form Test</title>
 	</head>
-	<body>
-        $output<br />
-
-        
-        <form method="post" action="terminal.php" />
-        $username:>  Add to output:
-        <input type="text" name="input" />
-        <input type="submit" value= "Enter" />
+	<body OnLoad="document.input.input.focus();">
+        $output
+        <form name="input" method="post" action="terminal.php" />
+        $username>
+        <input type="text" name="input" autocomplete="off" />
+        <input type="submit" value= "Enter" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
 	</form>
-        
+        <br>
         <form method="post" action="terminal.php" />
         $username:> What is your username?
-        <input type="text" name="username" />
-        <input type="submit" value= "Set Username" />
+        <input type="text" name="username" autocomplete="off" />
+        <input type="submit" value= "Set Username" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
 	</form>
         </body>
 </html>
