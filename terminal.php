@@ -1,39 +1,47 @@
 <?php 
 //git hub version
 //terminal.php
+
 session_start();
 // store session data
 $_SESSION['output'];
 $_SESSION['username'];
 
-//set username
-if (isset($_SESSION['username']) and $_SESSION['username']!="guest") {
-    $username =  $_SESSION['username'];
+if(isset($_POST['username'])){
+	if (isset($_SESSION['username']) and $_SESSION['username']!="guest") {
+	
+		//TODO if set new username before exit error, must exit first
+
+	
+	} else {
+    	if (isset($_POST['username'])) 
+        	$_SESSION['username'] = $_POST['username'];
+    	else 
+        	$_SESSION['username'] = "guest";
+	} 
 } else {
-    if (isset($_POST['username'])) 
-        $_SESSION['username'] = $_POST['username'];
-    else 
-        $_SESSION['username'] = "guest";
-    $username =  $_SESSION['username'];
+		if($_SESSION['username']=="")
+			$_SESSION['username']="guest";
 }
 
-//set "name" which is just stuff to add to output
-if (isset($_POST['name'])) {
-    $name = $_POST['name']; 
-    if($name == "exit"){
-        $name = "";
+
+//set input to add to output
+if (isset($_POST['input'])) {
+    $input = $_POST['input']; 
+    if($input == "exit"){
+        $input = "";
         session_destroy();
         unset($_SESSION['output']);
-        unset($_SESSION['username']);
-        $username = $_SESSION['username'];   
+        $_SESSION['username']="guest";
     }
-    $_SESSION['output']= $_SESSION['output'] . $name;
-    $output = $_SESSION['output']; 
+    $_SESSION['output']= $_SESSION['output'] . $input;
 }
 else {
-    $name = "";
-    $output = $_SESSION['output']; 
+    $input = "";
 }
+
+$username =  $_SESSION['username'];
+$output = $_SESSION['output']; 
 
 //build web page
 echo <<<_END
@@ -58,8 +66,8 @@ echo <<<_END
 
         
         <form method="post" action="terminal.php" />
-        $username:> Add to output:
-        <input type="text" name="name" />
+        $username:>  Add to output:
+        <input type="text" name="input" />
         <input type="submit" value= "Enter" />
 	</form>
         
