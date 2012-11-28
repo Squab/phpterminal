@@ -2,6 +2,7 @@
 //git hub version
 //terminal.php
 
+
 session_start();
 // store session data
 $_SESSION['output'];
@@ -24,6 +25,8 @@ if(isset($_POST['username'])){
 			$_SESSION['username']="guest";
 }
 
+$username =  $_SESSION['username'];
+
 
 //set input to add to output
 if (isset($_POST['input'])) {
@@ -34,7 +37,7 @@ if (isset($_POST['input'])) {
         unset($_SESSION['output']);
         $_SESSION['username']="guest";
     }
-    $_SESSION['output']= $_SESSION['output'] . $input;
+    $_SESSION['output']=  $_SESSION['output'] . $username . "> " . $input . "<br>";
 }
 else {
     $input = "";
@@ -51,7 +54,6 @@ echo <<<_END
                 body{
                 padding: 10px;
                 position: relative;
-                overflow: hidden;    
                 font-family: FreeMono, monospace;
                 color: #aaa;
                 background-color: #000;
@@ -62,7 +64,7 @@ echo <<<_END
 		<title>Form Test</title>
 	</head>
 	<body>
-        $username:> Your output is $output<br />
+        $output<br />
 
         
         <form method="post" action="terminal.php" />
