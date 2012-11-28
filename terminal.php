@@ -1,9 +1,12 @@
-<?php // formtest.php
+<?php 
+//git hub version
+//terminal.php
 session_start();
 // store session data
 $_SESSION['output'];
 $_SESSION['username'];
 
+//set username
 if (isset($_SESSION['username']) and $_SESSION['username']!="guest") {
     $username =  $_SESSION['username'];
 } else {
@@ -14,6 +17,7 @@ if (isset($_SESSION['username']) and $_SESSION['username']!="guest") {
     $username =  $_SESSION['username'];
 }
 
+//set "name" which is just stuff to add to output
 if (isset($_POST['name'])) {
     $name = $_POST['name']; 
     if($name == "exit"){
@@ -31,6 +35,7 @@ else {
     $output = $_SESSION['output']; 
 }
 
+//build web page
 echo <<<_END
 <html>
 	<head>
@@ -53,7 +58,7 @@ echo <<<_END
 
         
         <form method="post" action="terminal.php" />
-        $username:> What is your name?
+        $username:> Add to output:
         <input type="text" name="name" />
         <input type="submit" value= "Enter" />
 	</form>
@@ -67,4 +72,5 @@ echo <<<_END
 </html>
 _END;
 
+//fin
 ?>
