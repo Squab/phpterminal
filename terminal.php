@@ -28,15 +28,16 @@ if(isset($_SESSION['output'])) {
 
 if (isset($_POST['input'])) {
 	$input = $_POST['input']; 
-	check_exit();
-	//if($output != "" and input != "")
-		$output =  $output . $username . ">" . "<font size=2> </font>" . $input . "<br>";
+	$output =  $output . $username . ">" . "<font size=2> </font>" . $input . "<br>";
+	functions();
 } else {
 	$input = "";
 }
 
 
 $_SESSION['output']=$output;
+$_SESSION['username']=$username;
+
 
 
 //build web page
@@ -63,7 +64,7 @@ echo <<<_END
 				outline: none;
 				}
                 </STYLE>        
-		<title>Form Test</title>
+		<title>Zombie Text Adventure</title>
 	</head>
 	<body OnLoad="document.input.input.focus();">
         $output
