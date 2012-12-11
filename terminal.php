@@ -12,6 +12,7 @@ error_reporting(E_ALL);
 // store session data
 $_SESSION['output'];
 $_SESSION['username'];
+$_SESSION['color'];
 
 if(isset($_SESSION['username'])) {
 	$username=$_SESSION['username'];
@@ -19,6 +20,10 @@ if(isset($_SESSION['username'])) {
 	$username="guest";
 }
 
+if(isset($_SESSION['color'])) {
+} else {
+	$_SESSION['color']="#aaa";
+}
 
 if(isset($_SESSION['output'])) { 
 	$output=$_SESSION['output'];
@@ -37,6 +42,8 @@ if (isset($_POST['input'])) {
 
 $_SESSION['output']=$output;
 $_SESSION['username']=$username;
+$color = $_SESSION['color'];
+
 
 
 
@@ -49,7 +56,7 @@ echo <<<_END
                 padding: 10px;
                 position: relative;
                 font-family: FreeMono, monospace;
-                color: #aaa;
+                color: $color;
                 background-color: #000;
                 font-size: 12px;
                 line-height: 16px;
@@ -57,14 +64,14 @@ echo <<<_END
                 input{
 				background: transparent;
 				border: 0; 
-				color: #aaa; 
+				color: $color; 
 				width: 80%; 
 				font-size: 12px; 
 				font-family: FreeMono, monospace;
 				outline: none;
 				}
                 </STYLE>        
-		<title>Zombie Text Adventure</title>
+		<title>Web Terminal</title>
 	</head>
 	<body OnLoad="document.input.input.focus();">
         $output
@@ -72,14 +79,8 @@ echo <<<_END
         $username> 
         <input type="text" name="input" autocomplete="off" />
         <input type="submit" value= "Enter" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
-	</form>
+		</form>
         <br>
-<!--        <form method="post" action="terminal.php" />
-        $username:> What is your username?
-        <input type="text" name="username" autocomplete="off" />
-        <input type="submit" value= "Set Username" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
-	</form>
--->
         </body>
 </html>
 _END;
